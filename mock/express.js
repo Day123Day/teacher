@@ -264,40 +264,41 @@ const dayList = [
     id: 1,
     day: 5,
     type: 0,
+    homeWordList: [
+      {
+        id: 1,
+        course: '数学作业',
+        type: 1,
+        start: '2023 / 10 / 10',
+        end: '2023 / 11 / 10',
+        noCorrect: 45,
+        correct: 43,
+      },
+      {
+        id: 2,
+        course: '语文作业',
+        type: 0,
+        start: '2023 / 10 / 10',
+        end: '2023 / 11 / 10',
+        noCorrect: 45,
+        correct: 33,
+      },
+      {
+        id: 3,
+        course: '英语作业',
+        type: 2,
+        start: '2023 / 10 / 10',
+        end: '2023 / 11 / 10',
+        noCorrect: 45,
+        correct: 23,
+      },
+    ],
   },
   {
     id: 2,
     day: 6,
     type: 1,
-  },
-]
-const homeWordList = [
-  {
-    id: 1,
-    course: '数学作业',
-    type: 1,
-    start: '2023 / 10 / 10',
-    end: '2023 / 11 / 10',
-    noCorrect: 45,
-    correct: 43,
-  },
-  {
-    id: 2,
-    course: '语文作业',
-    type: 0,
-    start: '2023 / 10 / 10',
-    end: '2023 / 11 / 10',
-    noCorrect: 45,
-    correct: 33,
-  },
-  {
-    id: 3,
-    course: '英语作业',
-    type: 2,
-    start: '2023 / 10 / 10',
-    end: '2023 / 11 / 10',
-    noCorrect: 45,
-    correct: 23,
+    homeWordList: [],
   },
 ]
 
@@ -328,13 +329,13 @@ app.get('/api/dayList', (req, res) => {
 //   }
 // })
 
-app.get('/api/test', (req, res) => {
-  res.send({
-    message: '请求成功',
-    data: homeWordList,
-    code: 0,
-  })
-})
+// app.get('/api/test', (req, res) => {
+//   res.send({
+//     message: '请求成功',
+//     data: homeWordList,
+//     code: 0,
+//   })
+// })
 
 app.listen(8081, () => {
   // eslint-disable-next-line no-console

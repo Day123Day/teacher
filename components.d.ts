@@ -7,6 +7,8 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    DayNumber: typeof import('./src/components/package/dayNumber.vue')['default']
+    DayPackage: typeof import('./src/components/package/dayPackage.vue')['default']
     GuoduCalendar: typeof import('./src/widgets/guodu-calendar/guodu-calendar.vue')['default']
     GuoduColorPicker: typeof import('./src/widgets/guodu-color-picker/guodu-color-picker.vue')['default']
     GuoduDrawer: typeof import('./src/widgets/guodu-drawer/guodu-drawer.vue')['default']
@@ -16,6 +18,8 @@ declare module 'vue' {
     GuoduLoading: typeof import('./src/widgets/guodu-loading/guodu-loading.vue')['default']
     GuoduModal: typeof import('./src/widgets/guodu-modal/guodu-modal.vue')['default']
     GuoduNavBar: typeof import('./src/widgets/guodu-nav-bar/guodu-nav-bar.vue')['default']
+    HomeWorkAbility: typeof import('./src/components/package/homeWorkAbility.vue')['default']
+    HomeWorkPackage: typeof import('./src/components/package/homeWorkPackage.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     ShyLoadMore: typeof import('./src/components/shy-load-more/shy-load-more.vue')['default']
