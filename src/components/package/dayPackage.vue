@@ -53,7 +53,7 @@ onMounted(() => {
     </view>
 
     <!-- 班级 -->
-    <view class="p-20rpx mr-30rpx inline-block b-1rpx b-white rounded-25rpx b-solid text-26rpx h-70rpx w-250rpx float-right" @change="bindClassChange">
+    <view class="p-20rpx mr-30rpx inline-block b-1rpx b-$base-color rounded-25rpx b-solid text-26rpx h-70rpx w-250rpx float-right" @change="bindClassChange">
       <view class="uni-list-cell-db inline-block">
         <picker :value="classList" :range="array" @change="bindClassChange">
           <view class="uni-input">

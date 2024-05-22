@@ -35,7 +35,7 @@ function clickTab(index: number) {
           </text>
         </view>
         <view v-if="item.type === 0" class="mt-15rpx text-22rpx relative left-[-10%]">
-          三份作业
+          家庭作业
         </view>
         <view v-else class="mt-15rpx relative h-34rpx" />
       </view>
