@@ -1,23 +1,22 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-// import { Fetch } from '~/utils/fetch'
-import $bus from '~/pages/bus/bus'
-
-const homeWordLists: any = ref([])
-
-// Fetch('http://127.0.0.1:8081/api/test', { method: 'GET' }).then((res) => {
-//   homeWordLists.value = res
-// })
-onMounted (() => {
-  $bus.on('getHomeWordList', (homeWordList) => {
-    homeWordLists.value = homeWordList
-  })
+const props = withDefaults(defineProps<{
+  homeWordLists: Array<{
+    id: number
+    course: string
+    type: number
+    start: string
+    end: string
+    total: number
+    correct: number
+  }>
+}>(), {
+  homeWordLists: () => [],
 })
 </script>
 
 <template>
   <view>
-    <view v-for="(item, id) in homeWordLists" :key="id" class="px-25rpx pt-30rpx mb-30rpx bg-[#FFFFFF] rounded-10rpx h-290rpx w-690rpx" model="homeWordList" :value="homeWordLists">
+    <view v-for="(item, id) in props.homeWordLists" :key="id" class="px-25rpx pt-30rpx mb-30rpx bg-[#FFFFFF] rounded-10rpx h-290rpx w-690rpx" model="props.homeWordList" :value="props.homeWordLists">
       <!-- 第一行 -->
       <view class="flex h-40rpx w-690rpx items-center">
         <view class="bg-[#EBF6FF] rounded-20rpx flex-center h-40rpx w-80rpx">
@@ -74,7 +73,7 @@ onMounted (() => {
             <text class="c-[#00A76E]">
               {{ item.correct }}
             </text>
-            <text>/{{ item.noCorrect }}</text>
+            <text>/{{ item.total }}</text>
           </view>
           <view class="text-22rpx">
             <text>以批改人数</text>

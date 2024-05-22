@@ -8,6 +8,8 @@ const path = {
   login: '/login',
   getUserInfo: '/user/info',
   getUserList: '/user/list',
+  getDay: '/day',
+  getHomeWordList: '/homeWordList',
 } as const
 
 type ApiKeys = keyof typeof path

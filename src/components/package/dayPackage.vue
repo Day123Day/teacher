@@ -1,19 +1,16 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-
+const emit = defineEmits(['getDay'])
 const date = ref('')
-
 const classList = ref(0)
 const array = ['全部班级', '一年级', '二年级', '三年级']
-
 // 更新数据
 function bindDateChange(e: any) {
   date.value = e.detail.value
+  emit('getDay', date.value)
 }
 // 班级更新
 function bindClassChange(e: any) {
   classList.value = e.detail.value
-  // console.log(1111)
 }
 const startDate = computed(() => {
   return getDate('start')
@@ -26,7 +23,6 @@ function getDate(type: any) {
   const date = new Date()
   let year = date.getFullYear()
   let month: any = date.getMonth() + 1
-  // let day = date.getDate()
 
   if (type === 'start')
     year = year - 60
@@ -34,9 +30,7 @@ function getDate(type: any) {
     year = year + 2
 
   month = month > 9 ? month : `0${month}`
-  // day = day > 9 ? day : `0${day}`
   return `${year}-${month}`
-  // return `${year}-${month}-${day}`
 }
 
 onMounted(() => {
@@ -46,15 +40,18 @@ onMounted(() => {
 </script>
 
 <template>
-  <view class="text-38rpx">
-    <view class="uni-list inline-block">
-      <picker mode="date" :value="date" :start="startDate" :end="endDate" fields="month" @change="bindDateChange">
-        <view class="uni-input">
-          {{ date }}
-        </view>
-      </picker>
+  <view class="text-38rpx flex h-70rpx justify-between items-center">
+    <view>
+      <view class="uni-list inline-block">
+        <picker mode="date" :value="date" :start="startDate" :end="endDate" fields="month" @change="bindDateChange">
+          <view class="uni-input">
+            {{ date }}
+          </view>
+        </picker>
+      </view>
+      <view class="i-carbon-chevron-down ml-17rpx inline-block" />
     </view>
-    <view class="i-carbon-chevron-down inline-block" />
+
     <!-- 班级 -->
     <view class="p-20rpx mr-30rpx inline-block b-1rpx b-white rounded-25rpx b-solid text-26rpx h-70rpx w-250rpx float-right" @change="bindClassChange">
       <view class="uni-list-cell-db inline-block">

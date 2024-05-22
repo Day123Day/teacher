@@ -259,83 +259,56 @@ app.get('/api/user/list', (c, res) => {
   }, 1000)
 })
 
-const dayList = [
-  {
-    id: 1,
-    day: 5,
-    type: 0,
-    homeWordList: [
-      {
-        id: 1,
-        course: '数学作业',
-        type: 1,
-        start: '2023 / 10 / 10',
-        end: '2023 / 11 / 10',
-        noCorrect: 45,
-        correct: 43,
-      },
-      {
-        id: 2,
-        course: '语文作业',
-        type: 0,
-        start: '2023 / 10 / 10',
-        end: '2023 / 11 / 10',
-        noCorrect: 45,
-        correct: 33,
-      },
-      {
-        id: 3,
-        course: '英语作业',
-        type: 2,
-        start: '2023 / 10 / 10',
-        end: '2023 / 11 / 10',
-        noCorrect: 45,
-        correct: 23,
-      },
-    ],
-  },
-  {
-    id: 2,
-    day: 6,
-    type: 1,
-    homeWordList: [],
-  },
-]
+let dayList = []
+let homeWordList = []
+// 作业量
+app.get('/api/homeWordList', (req, res) => {
+  homeWordList = []
+  function rand(n, m) {
+    return Math.ceil(Math.random() * (n - m + 1)) + m - 1
+  };
+  function zeroOne() {
+    return Math.floor(Math.random() * 3)
+  }
+  for (let i = 0; i <= rand(1, 10); i++) {
+    homeWordList.push({
+      id: i,
+      course: '数学作业',
+      type: zeroOne(),
+      start: '2023 / 10 / 10',
+      end: '2024 / 11 / 10',
+      total: 45,
+      correct: 43,
+    })
+  }
 
-app.get('/api/dayList', (req, res) => {
+  res.send({
+    message: '请求成功',
+    data: homeWordList,
+    code: 0,
+  })
+})
+// 天数
+app.post('/api/day', (req, res) => {
+  const { dayNumber } = req.body
+  dayList = []
+  function zeroOne() {
+    return Math.floor(Math.random() * 2)
+  }
+  for (let i = 1; i <= dayNumber; i++) {
+    dayList.push({
+      id: i,
+      day: i,
+      type: zeroOne(),
+    })
+  }
+
   res.send({
     message: '请求成功',
     data: dayList,
     code: 0,
   })
 })
-
-// app.post('/api/day', (req, res) => {
-//   const { day } = req.body
-//   dayList.filter(i => i.day === day)
-//   if (homeWordList && homeWordList.length > 0) {
-//     res.send ({
-//       message: '数据请求成功',
-//       data: homeWordList,
-//       code: 0,
-//     })
-//   }
-//   else {
-//     res.send ({
-//       message: '数据为空',
-//       data: [],
-//       code: 0,
-//     })
-//   }
-// })
-
-// app.get('/api/test', (req, res) => {
-//   res.send({
-//     message: '请求成功',
-//     data: homeWordList,
-//     code: 0,
-//   })
-// })
 
 app.listen(8081, () => {
   // eslint-disable-next-line no-console
