@@ -7,9 +7,9 @@ const dayList = ref<Array<{
   day: number
   type: number
 }>>([])
-const nowDay = ref()
-const yearMonth = ref('')
+const nowDay = ref(1)
 const nowIndex = ref()
+const days = ref()
 const homeWordListLength = ref()
 const homeWordLists = ref<Array<{
   id: number
@@ -30,12 +30,12 @@ onPullDownRefresh(() => {
 function getDaysInMonth(year: number, month: number) {
   return new Date(year, month, 0).getDate()
 }
-// 得到月对应的天数
+// 改变月得到该月对应的天数
 function getDay(day: string) {
-  const [year, month] = day.split('-').map(Number)
+  const [year, month] = day.split('/').map(Number)
   const dayNumber = getDaysInMonth(year, month)
+  days.value = dayNumber
   dayNumberQuer(dayNumber)
-  getDate()
   setTimeout(() => {
     homeWorkList(nowIndex.value)
   }, 100)
@@ -46,18 +46,6 @@ function dayNumberQuer(dayNumber: number) {
   Fetch(api.getDay, { data: { dayNumber }, method: 'POST' }).then((res) => {
     dayList.value = res
   })
-}
-// 获得日期
-function getDate() {
-  const date = new Date()
-  const year = date.getFullYear()
-  let month: any = date.getMonth() + 1
-  const day = date.getDate()
-  nowDay.value = day - 1
-  // console.log(nowIndex.value)
-
-  month = month > 9 ? month : `0${month}`
-  yearMonth.value = `${year}-${month}`
 }
 // 获得后台返回作业量的数组
 function homeWorkQuer() {
@@ -77,6 +65,12 @@ function homeWorkList(index: number) {
   else
     homeWordLists.value = []
 }
+// 获得当前月的天数
+function nowMonth(year: number, month: number, day: number) {
+  const dayNumber = getDaysInMonth(year, month)
+  dayNumberQuer(dayNumber)
+  nowDay.value = day - 1
+}
 // 获得当前天的作业
 function nowHomeWork() {
   if (dayList.value[nowDay.value].type === 0)
@@ -85,28 +79,28 @@ function nowHomeWork() {
   else
     homeWordLists.value = []
 }
+// 刚开始就改变年月分
+// function selectedDay(selectedDay: number) {
+//   setTimeout(() => {
+//     console.log(days.value)
+//   }, 3000)
+// console.log(selectedDay)
+// }
 // 等待一秒后得到今天的作业
 setTimeout(() => {
   nowHomeWork()
 }, 1000)
-getDate()
-onMounted(() => {
-  const currentDate = yearMonth.value
-  const [year, month] = currentDate.split('-').map(Number)
-  const dayNumber = getDaysInMonth(year, month)
-  dayNumberQuer(dayNumber)
-})
 </script>
 
 <template>
-  <view class="bg-[url(../static/images/23.png)] bg-contain bg-no-repeat px-30rpx bg-$progress-rail-color">
-    <view class="pt-48rpx mb-54rpx text-40rpx">
+  <view class="bg-[url(../static/images/23.png)] bg-contain bg-no-repeat px-30rpx bg-$body-background-color">
+    <view class="pt-48rpx mb-54rpx text-40rpx font-600 c-$text-color-0">
       <text>
         智慧作业教师端
       </text>
     </view>
     <!-- 日期年月 -->
-    <day-package @get-day="getDay" />
+    <day-package @get-day="getDay" @now-month="nowMonth" />
     <!-- 日期天数 -->
     <day-number :day-lists="dayList" :now-day="nowDay" :home-word-list-length="homeWordListLength" @home-work-list="homeWorkList" />
 

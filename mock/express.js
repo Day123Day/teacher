@@ -273,7 +273,7 @@ app.get('/api/homeWordList', (req, res) => {
   for (let i = 0; i <= rand(1, 10); i++) {
     homeWordList.push({
       id: i,
-      course: '数学作业',
+      course: '10/07·数学作业',
       type: zeroOne(),
       start: '2023 / 10 / 10',
       end: '2024 / 11 / 10',

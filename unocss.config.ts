@@ -26,6 +26,7 @@ export default {
       'bgcolor': 'bg-[#FFFFFF]',
       'text-color': 'c-[#FFFFFF]',
       'border-rounded': 'rounded-30rpx',
+      'between': 'flex justify-between',
     },
   ],
 

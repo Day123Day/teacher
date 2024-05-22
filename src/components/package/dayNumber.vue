@@ -11,19 +11,20 @@ const props = withDefaults(defineProps<{
   dayLists: () => [],
 })
 const emit = defineEmits(['homeWorkList'])
-const curDay = ref(props.nowDay)
+const curDay = ref()
 const index = ref('')
 
+// setTimeout(() => {
+//   emit('selectedDay', curDay.value)
+// }, 600)
 // 点击天，tab切换作业
 function clickTab(index: number) {
   emit('homeWorkList', index)
 }
-// nextTick(() => {
-//   index.value = `id${props.nowDay}`
-// })
 setTimeout(() => {
   index.value = `id${props.nowDay}`
-}, 1000)
+  curDay.value = props.nowDay
+}, 500)
 </script>
 
 <template>
@@ -35,9 +36,7 @@ setTimeout(() => {
             {{ item.day }}
           </text>
         </view>
-        <view v-if="item.type === 0" class="mt-15rpx text-22rpx relative left-[-10%]">
-          家庭作业
-        </view>
+        <view v-if="item.type === 0" class="mt-15rpx bg-$background-color rounded-50% relative h-12rpx w-12rpx left-36%" />
         <view v-else class="mt-15rpx relative h-34rpx" />
       </view>
     </scroll-view>

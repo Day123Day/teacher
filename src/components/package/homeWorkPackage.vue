@@ -82,61 +82,65 @@ function color(type: number) {
     <view v-if="props.homeWordLists.length">
       <view v-for="(item, id) in props.homeWordLists" :key="id" class="px-25rpx pt-30rpx mb-30rpx bg-$base-color rounded-10rpx h-290rpx w-690rpx" model="props.homeWordList" :value="props.homeWordLists">
         <!-- 第一行 -->
-        <view class="flex h-40rpx justify-between">
+        <view class="between h-40rpx">
           <view class="flex items-center">
-            <view class="bg-$progress-rail-color rounded-20rpx flex-center inline-flex h-40rpx w-80rpx">
-              <text class="text-20rpx text-center color-$info-color">
+            <view class="bg-$background-color-0 rounded-20rpx flex-center inline-flex h-40rpx w-80rpx">
+              <text class="text-20rpx text-center c-$text-color-4">
                 基础
               </text>
             </view>
-            <view class="ml-20rpx inline-block text-30rpx font-600">
+            <view class="ml-20rpx inline-block text-30rpx font-600 c-$text-color-0">
               {{ item.course }}
             </view>
           </view>
           <!-- 批该状态 -->
           <view class="inline-flex items-center">
-            <view class="mr-13rpx inline-block c-$success-color h-24rpx w-24rpx" :class="icon(item.type)" :style="color(item.type)" />
-            <text class="text-22rpx">
+            <view class="mr-13rpx inline-block c-$background-color h-24rpx w-24rpx" :class="icon(item.type)" :style="color(item.type)" />
+            <text class="text-22rpx c-$text-color-0">
               {{ condition(item.type) }}
             </text>
           </view>
         </view>
         <!-- 第二行 -->
-        <view class="mt-30rpx text-24rpx flex justify-between">
+        <view class="between mt-30rpx text-24rpx">
           <view class="inline-block">
-            <text>发布日期：</text>
+            <text class="c-$text-color-0">
+              发布日期：
+            </text>
             <text class="c-$oborder-color">
               {{ item.start }}
             </text>
           </view>
           <view class="inline-block">
-            <text>结束批改：</text>
+            <text class="c-$text-color-0">
+              结束批改：
+            </text>
             <text class="c-$oborder-color">
               {{ item.end }}
             </text>
           </view>
         </view>
         <!-- 第三行 -->
-        <view class="mb-30rpx mt-60rpx flex justify-between">
+        <view class="between mb-30rpx mt-60rpx">
           <view class="inline-block">
             <view class="mb-10rpx text-36rpx">
-              <text class="c-[#00A76E]">
+              <text class="c-$background-color">
                 {{ item.correct }}
               </text>
               <text>/{{ item.total }}</text>
             </view>
-            <view class="text-22rpx">
+            <view class="text-22rpx c-$text-color-0">
               <text>以批改人数</text>
             </view>
           </view>
           <view class="flex items-center">
-            <view class="inline-block b-1rpx b-[#C9CED9] rounded-33rpx b-solid flex flex-center h-66rpx w-170rpx">
-              <text class="text-26rpx text-center">
+            <view class="b-1rpx b-$border-color-1 rounded-33rpx b-solid flex-center inline-flex h-66rpx w-170rpx">
+              <text class="text-26rpx text-center c-$text-color-0">
                 作业详情
               </text>
             </view>
-            <view class="ml-20rpx inline-block bg-[#00A76E] rounded-33rpx flex flex-center h-66rpx w-170rpx">
-              <text class="text-26rpx text-center color-[#FFFFFF]">
+            <view class="ml-20rpx inline-block bg-$background-color rounded-33rpx flex flex-center h-66rpx w-170rpx">
+              <text class="text-26rpx text-center color-$base-color">
                 学情报告
               </text>
             </view>
