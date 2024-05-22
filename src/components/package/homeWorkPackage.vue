@@ -39,10 +39,10 @@ function icon(type: number) {
       icon: 'i-carbon-checkmark',
     },
     NO: {
-      icon: 'i-carbon-rule-cancelled',
+      icon: 'i-carbon-help-filled',
     },
     OR: {
-      icon: 'i-carbon-rule-test',
+      icon: 'i-carbon-hourglass',
     },
   }
   if (type === 0)

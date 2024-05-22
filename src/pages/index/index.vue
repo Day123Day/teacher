@@ -10,6 +10,7 @@ const dayList = ref<Array<{
 const nowDay = ref()
 const yearMonth = ref('')
 const nowIndex = ref()
+const homeWordListLength = ref()
 const homeWordLists = ref<Array<{
   id: number
   course: string
@@ -34,9 +35,11 @@ function getDay(day: string) {
   const [year, month] = day.split('-').map(Number)
   const dayNumber = getDaysInMonth(year, month)
   dayNumberQuer(dayNumber)
+  getDate()
   setTimeout(() => {
     homeWorkList(nowIndex.value)
   }, 100)
+  // console.log('111', nowIndex.value)
 }
 // 获得后台返回天数的数组
 function dayNumberQuer(dayNumber: number) {
@@ -45,17 +48,13 @@ function dayNumberQuer(dayNumber: number) {
   })
 }
 // 获得日期
-function getDate(type: any) {
+function getDate() {
   const date = new Date()
-  let year = date.getFullYear()
+  const year = date.getFullYear()
   let month: any = date.getMonth() + 1
   const day = date.getDate()
   nowDay.value = day - 1
-
-  if (type === 'start')
-    year = year - 60
-  else if (type === 'end')
-    year = year + 2
+  // console.log(nowIndex.value)
 
   month = month > 9 ? month : `0${month}`
   yearMonth.value = `${year}-${month}`
@@ -64,6 +63,8 @@ function getDate(type: any) {
 function homeWorkQuer() {
   Fetch(api.getHomeWordList, { method: 'GET' }).then((res) => {
     homeWordLists.value = res
+    // homeWordListLength.value = homeWordLists.value.length
+    // console.log(homeWordListLength.value)
   })
 }
 // 获得作业
@@ -88,7 +89,7 @@ function nowHomeWork() {
 setTimeout(() => {
   nowHomeWork()
 }, 1000)
-getDate({ format: true })
+getDate()
 onMounted(() => {
   const currentDate = yearMonth.value
   const [year, month] = currentDate.split('-').map(Number)
@@ -107,7 +108,7 @@ onMounted(() => {
     <!-- 日期年月 -->
     <day-package @get-day="getDay" />
     <!-- 日期天数 -->
-    <day-number :day-lists="dayList" :now-day="nowDay" @home-work-list="homeWorkList" />
+    <day-number :day-lists="dayList" :now-day="nowDay" :home-word-list-length="homeWordListLength" @home-work-list="homeWorkList" />
 
     <!-- 作业功能 -->
     <homeWorkAbility />

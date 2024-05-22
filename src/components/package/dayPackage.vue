@@ -30,7 +30,7 @@ function getDate(type: any) {
     year = year + 2
 
   month = month > 9 ? month : `0${month}`
-  return `${year}-${month}`
+  return `${year} / ${month}`
 }
 
 onMounted(() => {
