@@ -11,19 +11,25 @@ const props = withDefaults(defineProps<{
   dayLists: () => [],
 })
 const emit = defineEmits(['homeWorkList'])
-const curDay = ref()
+const curDay = ref(props.nowDay)
+const nowIndex = ref()
 const index = ref('')
 
-// setTimeout(() => {
-//   emit('selectedDay', curDay.value)
-// }, 600)
+watchEffect(() => {
+  // 监听 props.nowDay 的变化,并更新副本
+  curDay.value = props.nowDay
+  nowIndex.value = props.nowDay
+  // index.value = `id${props.nowDay}`
+})
 // 点击天，tab切换作业
 function clickTab(index: number) {
-  emit('homeWorkList', index)
+  if (nowIndex.value !== index) {
+    nowIndex.value = index
+    emit('homeWorkList', index)
+  }
 }
 setTimeout(() => {
-  index.value = `id${props.nowDay}`
-  curDay.value = props.nowDay
+  index.value = `id${curDay.value}`
 }, 500)
 </script>
 

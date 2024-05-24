@@ -6,6 +6,7 @@ const dayList = ref<Array<{
   id: number
   day: number
   type: number
+  selected: boolean
 }>>([])
 const nowDay = ref(1)
 const nowIndex = ref()
@@ -82,13 +83,6 @@ function nowHomeWork() {
   else
     homeWordLists.value = []
 }
-// 刚开始就改变年月分
-// function selectedDay(selectedDay: number) {
-//   setTimeout(() => {
-//     console.log(days.value)
-//   }, 3000)
-// console.log(selectedDay)
-// }
 // 等待一秒后得到当前天的作业
 setTimeout(() => {
   nowHomeWork()
