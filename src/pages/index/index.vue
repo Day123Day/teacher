@@ -22,6 +22,8 @@ const homeWordLists = ref<Array<{
 }>>([])
 // 监听下拉刷新
 onPullDownRefresh(() => {
+  // 更新当前天的作业
+  homeWorkList(nowIndex.value)
   setTimeout(() => {
     uni.stopPullDownRefresh()
   }, 1000)
@@ -73,6 +75,7 @@ function nowMonth(year: number, month: number, day: number) {
 }
 // 获得当前天的作业
 function nowHomeWork() {
+  nowIndex.value = nowDay.value
   if (dayList.value[nowDay.value].type === 0)
     homeWorkQuer()
 
@@ -86,7 +89,7 @@ function nowHomeWork() {
 //   }, 3000)
 // console.log(selectedDay)
 // }
-// 等待一秒后得到今天的作业
+// 等待一秒后得到当前天的作业
 setTimeout(() => {
   nowHomeWork()
 }, 1000)

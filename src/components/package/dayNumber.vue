@@ -30,8 +30,8 @@ setTimeout(() => {
 <template>
   <view>
     <scroll-view class="w-100% whitespace-nowrap" scroll-x="true" :scroll-into-view="index" :show-scrollbar="false">
-      <view v-for="(item, index) in props.dayLists" :id="`id${item.id}`" :key="item.id" class="ml-40rpx inline-flex flex-col items-start">
-        <view class="mt-77rpx rounded-20rpx flex-center h-66rpx w-66rpx" :style="[curDay === index ? 'backgroundColor:#00A76E;color:#FFFFFF' : '']" @tap="curDay = index" @click="clickTab(index)">
+      <view v-for="(item, indexed) in props.dayLists" :id="`id${item.id}`" :key="item.id" class="ml-40rpx inline-flex flex-col items-start">
+        <view class="mt-77rpx rounded-20rpx flex-center h-66rpx w-66rpx" :style="[curDay === indexed ? 'backgroundColor:#00A76E;color:#FFFFFF' : '']" @tap="curDay = indexed" @click="clickTab(indexed)">
           <text class="mt-21rpx text-36rpx relative top-[-15%]">
             {{ item.day }}
           </text>
