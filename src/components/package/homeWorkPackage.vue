@@ -102,7 +102,7 @@ function color(type: number) {
           </view>
         </view>
         <!-- 第二行 -->
-        <view class="between mt-30rpx text-24rpx">
+        <view class="mt-30rpx text-24rpx between">
           <view class="inline-block">
             <text class="c-$text-color-0">
               发布日期：
@@ -121,7 +121,7 @@ function color(type: number) {
           </view>
         </view>
         <!-- 第三行 -->
-        <view class="between mb-30rpx mt-60rpx">
+        <view class="mb-30rpx mt-60rpx between">
           <view class="inline-block">
             <view class="mb-10rpx text-36rpx">
               <text class="c-$background-color">
@@ -134,7 +134,7 @@ function color(type: number) {
             </view>
           </view>
           <view class="flex items-center">
-            <view class="b-1rpx b-$border-color-1 rounded-33rpx b-solid flex-center inline-flex h-66rpx w-170rpx">
+            <view class="b-1rpx b-$border-color-2 rounded-33rpx b-solid flex-center inline-flex h-66rpx w-170rpx">
               <text class="text-26rpx text-center c-$text-color-0">
                 作业详情
               </text>

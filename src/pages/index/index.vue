@@ -90,8 +90,8 @@ setTimeout(() => {
 </script>
 
 <template>
-  <view class="bg-[url(../static/images/23.png)] bg-contain bg-no-repeat px-30rpx bg-$body-background-color">
-    <view class="pt-48rpx mb-54rpx text-40rpx font-600 c-$text-color-0">
+  <view class="bg-[url(https://guodu-homework.oss-cn-beijing.aliyuncs.com/static/teacher/main_top_bg.png)] bg-contain bg-no-repeat px-30rpx bg-$body-background-color">
+    <view class="pt-105rpx mb-54rpx text-40rpx font-600 c-$text-color-0">
       <text>
         智慧作业教师端
       </text>
